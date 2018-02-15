@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
+<h1>Pins</h1>
+
+
+<div class="grid" data-masonry= '{"ItemSelector": ".grid-item", "columnWidth": 190}' >
+    <% @pins.each do |pin| %>
+    
+      <div class="grid-item" style="width: 20%">
+      <div class="thumbnail">
+         
+        <%= image_tag(pin.photo, :class => 'img_responsive') %>
+        <%= pin.name %>
+         <%= pin.description %>
+        <div class="buttons" style="margin-top: 10px; margin-bottom: 10px">
+        <%= link_to 'Ver', pin, :class => 'btn' %>
+        <%= link_to 'Editar', edit_pin_path(pin), :class => 'btn' %>
+        <%= link_to 'Eliminar', pin, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>
+      </div>
+    </div>
+  </div>    
+    <% end %>
+<br>
+</div>
+
+<%= link_to 'Nuevo pin', new_pin_path %>
+</div>
+<script type="text/javascript">
+  $(' .grid').masonry({
+    ItemSelector: '.grid-item', 
+    columnWidth: 200
+  });
+  $(window).load(function(){
+    $(' .grid').masonry({
+      ItemSelector: '.grid-item', 
+      columnWidth: 200
+    });
+  })
+
+</script>
